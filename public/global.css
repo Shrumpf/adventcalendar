@@ -1,0 +1,32 @@
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	color: #eaeaea;
+}
+
+.hljs {
+	margin: 1em;
+}
+
+.gist-meta a {
+	color: #e9e7e5;
+	font-weight: 600;
+	text-decoration: none;
+	text-decoration-line: none;
+	text-decoration-color: currentcolor;
+	border: 0;
+	text-decoration-color: currentcolor;
+	border-color: currentcolor;
+}
+.gist-meta a:hover {
+	text-decoration: underline;
+}
