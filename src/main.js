@@ -1,9 +1,14 @@
 import App from './App.svelte';
 
+const shuffle = array => 
+  [...Array(array.length)]
+    .map((...args) => Math.floor(Math.random() * (args[1] + 1)))
+    .reduce( (a, rv, i) => ([a[i], a[rv]] = [a[rv], a[i]]) && a, array);
+
 const app = new App({
 	target: document.body,
 	props: {
-		doors: [
+		doors: shuffle([
 			{
 				"number": 1,
 				"heading": "allEqual",
@@ -172,8 +177,7 @@ const app = new App({
 				"content": `const deepMapKeys = (obj, fn) =>\n  Array.isArray(obj)\n    ? obj.map(val => deepMapKeys(val, fn))\n    : typeof obj === 'object'\n    ? Object.keys(obj).reduce((acc, current) => {\n        const key = fn(current);\n        const val = obj[current];\n        acc[key] =\n          val !== null && typeof val === 'object' ? deepMapKeys(val, fn) : val;\n        return acc;\n      }, {})\n    : obj;\n\nExamples\n\nconst obj = {\n  foo: '1',\n  nested: {\n    child: {\n      withArray: [\n        {\n          grandChild: ['hello']\n        }\n      ]\n    }\n  }\n};\nconst upperKeysObj = deepMapKeys(obj, key => key.toUpperCase());\n/*\n{\n  "FOO":"1",\n  "NESTED":{\n    "CHILD":{\n      "WITHARRAY":[\n        {\n          "GRANDCHILD":[ 'hello' ]\n        }\n      ]\n    }\n  }\n}\n*/`,
 				"copyright": 'Created by <a href="https://twitter.com/30secondsofcode">30secondsofcode</a> on <a href="https://www.30secondsofcode.org/js/s/deep-map-keys">www.30secondsofcode.org</a>',
 			}
-
-		]
+		])
 	}
 });
 

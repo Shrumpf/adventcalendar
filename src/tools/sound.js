@@ -11,9 +11,17 @@ function sound(src) {
     this.play = function () {
         this.sound.play();
     };
-    this.stop = function () {
+
+    this.pause = function () {
         this.sound.pause();
     };
+    this.toggle = function () {
+        if (this.sound.paused) {
+            this.sound.play();
+        } else {
+            this.sound.pause();
+        }
+    }
 }
 const backgroundmusic = new sound("sounds/Christmas_Eve_By_Filipps_Music_Team_Com.mp3");
-export {sound, backgroundmusic};
+export { sound, backgroundmusic };

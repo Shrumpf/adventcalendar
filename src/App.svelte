@@ -2,9 +2,13 @@
 	export let doors;
 	import Snow from "./components/Snow.svelte";
 	import Door from "./components/Door.svelte";
-
+	import Settings from "./components/Settings.svelte";
 	import {backgroundmusic} from "./tools/sound";
-	backgroundmusic.play();
+
+	let bgmusicstate = localStorage.getItem("bgmusicstate") || "play";
+	if (bgmusicstate === "play") {
+		backgroundmusic.play();
+	}
 
 	let bg = `image-` + ~~(Math.random() * 4);
 </script>
@@ -42,6 +46,7 @@
 
 <main>
 	<Snow />
+	<Settings />
 	<div class="doors-wrapper">
 		{#each doors as door}
 			<Door props={door} bg={bg} />
