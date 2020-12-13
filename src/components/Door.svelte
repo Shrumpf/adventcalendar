@@ -2,6 +2,23 @@
     export let props;
     export let bg;
     import Codesnippet from "./Codesnippet.svelte";
+    import { settings } from "../settings/settings";
+
+    let doorNumber = () => {
+        switch (settings.Numbers) {
+            case "bin":
+                return props.number.toString("2").padStart(5, 0);
+            case "okt":
+                return props.number.toString("8").padStart(2, 0);
+                break;
+            case "hex":
+                return props.number.toString("16").toUpperCase().padStart(2, 0);
+                break;
+            case "dec":
+                return props.number.toString("10").padStart(2, 0);
+                break;
+        }
+    };
 
     let opened = false;
 
@@ -72,7 +89,7 @@
 </style>
 
 <div class="door {bg} {opened ? 'open' : ''}" on:click={toggleDoor}>
-    <h1 class={isToday ? 'highlight' : ''}>{props.number}</h1>
+    <h1 class={isToday ? 'highlight' : ''}>{doorNumber()}</h1>
 </div>
 {#if opened}
     <Codesnippet content={props} on:toggleDoor={toggleDoor} />
